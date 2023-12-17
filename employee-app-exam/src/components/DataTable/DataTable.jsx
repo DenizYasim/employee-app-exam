@@ -5,20 +5,25 @@ function DataTable({ data }) {
 		<table>
 			<thead>
 				<tr>
-					<th>Employee ID</th>
 					<th>Project ID</th>
+					<th>Employee ID</th>
 					<th>Start Date</th>
 					<th>End Date</th>
 				</tr>
 			</thead>
 			<tbody>
-				{data.map((row, index) => {
+				{Object.entries(data).map((data, i) => {
 					return (
-						<tr key={index}>
-							<td>{row[0]}</td>
-							<td>{row[1]}</td>
-							<td>{row[2]}</td>
-							<td>{row[3]}</td>
+						<tr key={i}>
+							<td>{data[0]}</td>
+							<td>
+								{data[1].map((item) => {
+									let temp = "";
+									temp += `${item[0]},`;
+									return temp;
+								})}
+							</td>
+							<td></td>
 						</tr>
 					);
 				})}

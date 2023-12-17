@@ -6,9 +6,10 @@ import {
 } from "../../utils/dataUtils";
 import FileUploadInput from "../FileUpload/FileUploadInput";
 import DataTable from "../DataTable/DataTable";
+import dateDifferenceInDays from "../../utils/dateDifferenceInDays";
 
 function DataVisualise() {
-	const [data, setData] = useState([]);
+	const [data, setData] = useState({});
 
 	function handleFileUpload(e) {
 		e.preventDefault();
@@ -17,7 +18,6 @@ function DataVisualise() {
 
 		const errors = [];
 
-		//Catches if file upload is canceled
 		if (file) {
 			reader.readAsText(file);
 
@@ -38,11 +38,18 @@ function DataVisualise() {
 					});
 				}
 
-				console.log(dataMatrix);
-				setData(dataMatrix);
-
 				const grouped = groupArraysByProject(dataMatrix);
+
+				setData(grouped);
+
 				console.log(grouped);
+
+				for (let key in grouped) {
+					grouped[key].forEach((value) => {
+						console.log(value[2]);
+						console.log(dateDifferenceInDays(value[2], value[3]));
+					});
+				}
 			};
 		}
 	}

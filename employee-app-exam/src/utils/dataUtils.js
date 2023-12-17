@@ -18,6 +18,10 @@ function groupArraysByProject(data) {
 	for (let array of data) {
 		let id = array[1];
 
+		if (array[3] === "NULL") {
+			array[3] = new Date();
+		}
+
 		if (groupedArrays[id]) {
 			groupedArrays[id].push(array);
 		} else {
