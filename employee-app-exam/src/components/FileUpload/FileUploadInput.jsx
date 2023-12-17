@@ -1,4 +1,5 @@
 import React from "react";
+import { formatArrIntoMatrix, splitIntoArray } from "../../utils/dataUtils";
 
 function FileUploadInput() {
 	function handleFileUpload(e) {
@@ -6,9 +7,17 @@ function FileUploadInput() {
 		const file = e.target.files[0];
 		const reader = new FileReader();
 
-		reader.readAsText(file);
+		//Catches if file upload is canceled
+		if (!!file) {
+			reader.readAsText(file);
 
-		reader.onload = function () {};
+			reader.onload = function () {
+				const dataArray = splitIntoArray(reader.result);
+				const dataMatrix = formatArrIntoMatrix(dataArray);
+
+				console.log(dataMatrix);
+			};
+		}
 	}
 
 	return (
