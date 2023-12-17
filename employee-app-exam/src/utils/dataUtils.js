@@ -3,9 +3,29 @@ function splitIntoArray(string) {
 }
 
 function formatArrIntoMatrix(array) {
-	return array
-		.filter((row) => row.trim().lenght !== 0)
-		.map((row) => row.split(",").map((cell) => cell.trim()));
+	return (
+		array
+			//filters out empty rows or ones with just a space
+			.filter((row) => row.trim().lenght !== 0)
+
+			.map((row) => row.split(",").map((cell) => cell.trim()))
+	);
 }
 
-export { splitIntoArray, formatArrIntoMatrix };
+function groupArraysByProject(data) {
+	let groupedArrays = {};
+
+	for (let array of data) {
+		let id = array[1];
+
+		if (groupedArrays[id]) {
+			groupedArrays[id].push(array);
+		} else {
+			groupedArrays[id] = [array];
+		}
+	}
+
+	return groupedArrays;
+}
+
+export { splitIntoArray, formatArrIntoMatrix, groupArraysByProject };

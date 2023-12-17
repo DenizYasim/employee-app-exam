@@ -1,10 +1,10 @@
 import "./App.css";
-import FileUploadInput from "./components/FileUpload/FileUploadInput";
+import DataVisualise from "./components/DataVisualise/DataVisualise";
 
 function App() {
 	return (
 		<div className="App">
-			<FileUploadInput />
+			<DataVisualise />
 		</div>
 	);
 }
