@@ -1,16 +1,17 @@
 import { dateDifferenceInDays } from "./dateDifferenceInDays";
 
 function projectLongjevity(obj) {
+	const arrayOfFinal = [];
 	for (let key in obj) {
 		const dateWorkedTogether = [];
-		const arrayOfFinal = [];
+		const arrayOfProject = [];
 		let earliestDate = Number.MAX_SAFE_INTEGER;
 		let latestDate = 0;
 
-		arrayOfFinal.push(key);
+		arrayOfProject.push(key);
 
 		obj[key].forEach((value) => {
-			arrayOfFinal.push(value[0]);
+			arrayOfProject.push(value[0]);
 
 			if (value[2] < earliestDate) {
 				earliestDate = value[2];
@@ -27,8 +28,9 @@ function projectLongjevity(obj) {
 			dateWorkedTogether[1]
 		);
 
-		arrayOfFinal.push(lingevity);
-		console.log(arrayOfFinal);
+		arrayOfProject.push(lingevity);
+		arrayOfFinal.push(arrayOfProject);
 	}
+	return arrayOfFinal;
 }
 export { projectLongjevity };
