@@ -6,7 +6,11 @@ import {
 } from "../../utils/dataUtils";
 import FileUploadInput from "../FileUpload/FileUploadInput";
 import DataTable from "../DataTable/DataTable";
-import { dateDifferenceInDays } from "../../utils/dateDifferenceInDays";
+import {
+	calculateDaysTogether,
+	dateDifferenceInDays,
+} from "../../utils/dateDifferenceInDays";
+import workingTimeCalculations from "../../utils/workingTimeCalculations";
 
 function DataVisualise() {
 	const [data, setData] = useState({});
@@ -35,6 +39,7 @@ function DataVisualise() {
 				if (errors.length) {
 					errors.forEach((error) => {
 						console.log(`data on row ${error} is missing a value`);
+						dataMatrix.splice(error - 1, 1);
 					});
 				}
 
@@ -44,18 +49,18 @@ function DataVisualise() {
 
 				console.log(grouped);
 
+				const arrayOfPairsInsert = [];
+
 				for (let key in grouped) {
 					const dateWorkedTogether = [];
-					const employeesWorkingTogether = [];
+
 					let earliestDate = Number.MAX_SAFE_INTEGER;
 					let latestDate = 0;
 
-					if (grouped[key].length > 1) {
-						for (let i = 0; i < grouped[key].length; i++) {
-							for (let j = i + 1; j < grouped[key].length; j++) {
-								console.log(grouped[key][i][2]);
-								console.log(grouped[key][j][2]);
-							}
+					let generator = workingTimeCalculations(grouped, key);
+					if (grouped[key].length > 0) {
+						for (const value of generator) {
+							arrayOfPairsInsert.push(value);
 						}
 					}
 
@@ -69,13 +74,16 @@ function DataVisualise() {
 							latestDate = value[3];
 							dateWorkedTogether[1] = latestDate;
 						}
-						// console.log(value[2]);
 						// console.log(dateDifferenceInDays(value[2], value[3]));
 					});
 					console.log(
 						dateDifferenceInDays(dateWorkedTogether[0], dateWorkedTogether[1])
 					);
 				}
+				// const arrayOfPairs = arrayOfPairsInsert.filter((item) => {
+				// 	return item.length > 1;
+				// });
+				console.log(arrayOfPairsInsert);
 			};
 		}
 	}
