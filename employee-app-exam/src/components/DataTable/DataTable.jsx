@@ -7,13 +7,13 @@ function DataTable({ projectTime }) {
 			{projectTime.length ? (
 				<table className={styles.container}>
 					<thead>
-						<tr>
+						<tr className={styles.tableTr}>
 							<th>Project ID</th>
 							<th>Employee IDs</th>
 							<th>Days Worked on Project</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody className={styles.tbody}>
 						{projectTime.map((project, i) => {
 							const Employees = project.slice(1, project.length - 1);
 							return (

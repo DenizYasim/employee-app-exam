@@ -6,7 +6,7 @@ function formatArrIntoMatrix(array) {
 	return (
 		array
 			//filters out empty rows or ones with just a space
-			.filter((row) => row.trim().lenght !== 0)
+			.filter((row) => row.trim().lenght !== 1)
 
 			.map((row) => row.split(",").map((cell) => cell.trim()))
 	);

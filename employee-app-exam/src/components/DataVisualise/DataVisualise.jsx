@@ -12,7 +12,7 @@ import PairsDataTable from "../PairsDataTable/PairsDataTable";
 import styles from "./DataVisualise.module.css";
 
 function DataVisualise() {
-	const [data, setData] = useState({});
+	// const [data, setData] = useState({});
 	const [projectTime, setProjcetTime] = useState([]);
 	const [arrPairs, setArrPairs] = useState([]);
 
@@ -28,7 +28,10 @@ function DataVisualise() {
 
 			reader.onload = function () {
 				const dataArray = splitIntoArray(reader.result);
-				const dataMatrix = formatArrIntoMatrix(dataArray);
+				const emptyDataFilter = dataArray.filter((row) => {
+					return row.length > 1;
+				});
+				const dataMatrix = formatArrIntoMatrix(emptyDataFilter);
 
 				//Catches if a row doesn't have all fields
 				dataMatrix.forEach((row, index) => {
@@ -43,17 +46,13 @@ function DataVisualise() {
 						dataMatrix.splice(error - 1, 1);
 					});
 				}
-				const grouped = groupArraysByProject(dataMatrix);
 
-				console.log(grouped);
+				const grouped = groupArraysByProject(dataMatrix);
 
 				const arrayOfPairs = workingTimeCalculations(grouped);
 				const arrayOfProjectTime = projectLongjevity(grouped);
 
-				console.log(arrayOfProjectTime);
-				console.log(arrayOfPairs);
-
-				setData(grouped);
+				// setData(grouped);
 				setProjcetTime(arrayOfProjectTime);
 				setArrPairs(arrayOfPairs);
 			};

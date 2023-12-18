@@ -7,13 +7,13 @@ function PairsDataTable({ employeePairs }) {
 			{employeePairs.length ? (
 				<table className={styles.container}>
 					<thead>
-						<tr>
+						<tr className={styles.tableTr}>
 							<th>Employee ID</th>
-							<th>Employee IDs</th>
-							<th>Days Worked Together</th>
+							<th>Employee ID</th>
+							<th>Overlaping Work Days</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody className={styles.tbody}>
 						{employeePairs.map((pair, i) => {
 							return (
 								<tr key={i}>
