@@ -1,32 +1,32 @@
 import React from "react";
+import styles from "./PairsDataTable.module.css";
 
-function PairsDataTable({ data, employeePairs }) {
-	employeePairs.sort((a, b) => {
-		if (a[2] > b[2]) {
-			return -1;
-		}
-	});
+function PairsDataTable({ employeePairs }) {
 	return (
-		<table>
-			<thead>
-				<tr>
-					<th>Employee ID</th>
-					<th>Employee IDs</th>
-					<th>Days Worked Together</th>
-				</tr>
-			</thead>
-			<tbody>
-				{employeePairs.map((pair, i) => {
-					return (
-						<tr key={i}>
-							<td>{pair[0]}</td>
-							<td>{pair[1]}</td>
-							<td>{pair[2]}</td>
+		<>
+			{employeePairs.length ? (
+				<table className={styles.container}>
+					<thead>
+						<tr>
+							<th>Employee ID</th>
+							<th>Employee IDs</th>
+							<th>Days Worked Together</th>
 						</tr>
-					);
-				})}
-			</tbody>
-		</table>
+					</thead>
+					<tbody>
+						{employeePairs.map((pair, i) => {
+							return (
+								<tr key={i}>
+									<td>{pair[1]}</td>
+									<td>{pair[2]}</td>
+									<td>{pair[3]}</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			) : null}
+		</>
 	);
 }
 

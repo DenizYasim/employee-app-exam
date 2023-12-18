@@ -23,14 +23,18 @@ function projectLongjevity(obj) {
 				dateWorkedTogether[1] = latestDate;
 			}
 		});
-		let lingevity = dateDifferenceInDays(
+		let longevity = dateDifferenceInDays(
 			dateWorkedTogether[0],
 			dateWorkedTogether[1]
 		);
 
-		arrayOfProject.push(lingevity);
+		arrayOfProject.push(longevity);
 		arrayOfFinal.push(arrayOfProject);
 	}
-	return arrayOfFinal;
+	return arrayOfFinal.sort((a, b) => {
+		if (a[a.length - 1] > b[b.length - 1]) {
+			return -1;
+		}
+	});
 }
 export { projectLongjevity };

@@ -9,6 +9,7 @@ import DataTable from "../DataTable/DataTable";
 import workingTimeCalculations from "../../utils/workingTimeCalculations";
 import { projectLongjevity } from "../../utils/projectLongevity";
 import PairsDataTable from "../PairsDataTable/PairsDataTable";
+import styles from "./DataVisualise.module.css";
 
 function DataVisualise() {
 	const [data, setData] = useState({});
@@ -60,10 +61,10 @@ function DataVisualise() {
 	}
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<FileUploadInput changeHandler={handleFileUpload} />
-			<DataTable data={data} projectTime={projectTime} />
-			<PairsDataTable data={data} employeePairs={arrPairs} />
+			<DataTable projectTime={projectTime} />
+			<PairsDataTable employeePairs={arrPairs} />
 		</div>
 	);
 }
