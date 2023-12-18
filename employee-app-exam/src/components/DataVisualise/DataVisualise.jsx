@@ -6,11 +6,8 @@ import {
 } from "../../utils/dataUtils";
 import FileUploadInput from "../FileUpload/FileUploadInput";
 import DataTable from "../DataTable/DataTable";
-import {
-	calculateDaysTogether,
-	dateDifferenceInDays,
-} from "../../utils/dateDifferenceInDays";
 import workingTimeCalculations from "../../utils/workingTimeCalculations";
+import { projectLongjevity } from "../../utils/projectLongevity";
 
 function DataVisualise() {
 	const [data, setData] = useState({});
@@ -42,48 +39,13 @@ function DataVisualise() {
 						dataMatrix.splice(error - 1, 1);
 					});
 				}
-
 				const grouped = groupArraysByProject(dataMatrix);
-
 				setData(grouped);
-
 				console.log(grouped);
+				const arrayOfPairs = workingTimeCalculations(grouped);
+				projectLongjevity(grouped);
 
-				const arrayOfPairsInsert = [];
-
-				for (let key in grouped) {
-					const dateWorkedTogether = [];
-
-					let earliestDate = Number.MAX_SAFE_INTEGER;
-					let latestDate = 0;
-
-					let generator = workingTimeCalculations(grouped, key);
-					if (grouped[key].length > 0) {
-						for (const value of generator) {
-							arrayOfPairsInsert.push(value);
-						}
-					}
-
-					grouped[key].forEach((value) => {
-						if (value[2] < earliestDate) {
-							earliestDate = value[2];
-							dateWorkedTogether[0] = earliestDate;
-						}
-
-						if (value[3] > latestDate) {
-							latestDate = value[3];
-							dateWorkedTogether[1] = latestDate;
-						}
-						// console.log(dateDifferenceInDays(value[2], value[3]));
-					});
-					console.log(
-						dateDifferenceInDays(dateWorkedTogether[0], dateWorkedTogether[1])
-					);
-				}
-				// const arrayOfPairs = arrayOfPairsInsert.filter((item) => {
-				// 	return item.length > 1;
-				// });
-				console.log(arrayOfPairsInsert);
+				console.log(arrayOfPairs);
 			};
 		}
 	}
