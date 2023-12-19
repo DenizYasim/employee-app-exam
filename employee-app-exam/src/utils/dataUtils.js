@@ -19,6 +19,7 @@ function groupArraysByProject(data) {
 
 	for (let array of data) {
 		let id = array[1];
+		//I dont know where else to put this validation
 		if (!!array[3] && !!array[2]) {
 			array[2] = convertDateIntoUtc(array[2]);
 			array[3] = convertDateIntoUtc(array[3]);

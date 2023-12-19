@@ -58,7 +58,6 @@ function useFile() {
 		arrPairs,
 		individual,
 		errors,
-
 		handleFileUpload,
 	};
 }

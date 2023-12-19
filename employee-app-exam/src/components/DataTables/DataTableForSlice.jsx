@@ -1,10 +1,13 @@
-import React from "react";
 import styles from "./DataTable.module.css";
 
+import useSearch from "../../hooks/useSearch";
+
 function DataTableForSlice({ arangedArr, firstTh, secondTh, thirdTh }) {
+	const { filteredData } = useSearch(arangedArr);
+
 	return (
 		<>
-			{arangedArr.length ? (
+			{filteredData.length ? (
 				<table className={styles.container}>
 					<thead>
 						<tr className={styles.tableTr}>
@@ -14,7 +17,7 @@ function DataTableForSlice({ arangedArr, firstTh, secondTh, thirdTh }) {
 						</tr>
 					</thead>
 					<tbody className={styles.tbody}>
-						{arangedArr.map((project, i) => {
+						{filteredData.map((project, i) => {
 							const employees = project.slice(1, project.length - 1);
 							return (
 								<tr key={i}>

@@ -1,10 +1,13 @@
-import React from "react";
 import styles from "./DataTable.module.css";
 
+import useSearch from "../../hooks/useSearch";
+
 function DataTableTemplate({ arrOfInfo, firstTh, secondTh, thirdTh }) {
+	const { filteredData } = useSearch(arrOfInfo);
+
 	return (
 		<>
-			{arrOfInfo.length ? (
+			{filteredData.length ? (
 				<table className={styles.container}>
 					<thead>
 						<tr className={styles.tableTr}>
@@ -14,7 +17,7 @@ function DataTableTemplate({ arrOfInfo, firstTh, secondTh, thirdTh }) {
 						</tr>
 					</thead>
 					<tbody className={styles.tbody}>
-						{arrOfInfo.map((subArr, i) => {
+						{filteredData.map((subArr, i) => {
 							return (
 								<tr key={i}>
 									<td>{subArr[0]}</td>
