@@ -1,4 +1,4 @@
-import { calculateDaysTogether } from "./dateDifferenceInDays";
+import { calculateDaysTogether } from "./dateCalculations";
 
 function workingTimeCalculations(obj) {
 	const employeesWorkingTogether = [];

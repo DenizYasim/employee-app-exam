@@ -3,13 +3,16 @@ import DataTableForSlice from "../DataTables/DataTableForSlice";
 import styles from "./DataVisualise.module.css";
 import DataTableTemplate from "../DataTables/DataTableTemplate";
 import useFile from "../../hooks/useFile";
+import ErrorsButton from "../ErrorsButton/ErrorsButton";
 
 function DataVisualisePage() {
-	const { projectTime, arrPairs, individual, handleFileUpload } = useFile();
+	const { projectTime, arrPairs, individual, errors, handleFileUpload } =
+		useFile();
 
 	return (
 		<div className={styles.container}>
 			<FileUploadInput changeHandler={handleFileUpload} />
+			<ErrorsButton errors={errors} />
 			<DataTableForSlice
 				arangedArr={projectTime}
 				firstTh={"Project ID"}

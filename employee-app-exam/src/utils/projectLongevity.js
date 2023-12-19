@@ -1,4 +1,4 @@
-import { dateDifferenceInDays } from "./dateDifferenceInDays";
+import { dateDifferenceInDays } from "./dateCalculations";
 
 function projectLongjevity(obj) {
 	const arrayOfFinal = [];
@@ -32,9 +32,7 @@ function projectLongjevity(obj) {
 		arrayOfFinal.push(arrayOfProject);
 	}
 	return arrayOfFinal.sort((a, b) => {
-		if (a[a.length - 1] > b[b.length - 1]) {
-			return -1;
-		}
+		return b[b.length - 1] - a[a.length - 1];
 	});
 }
 export { projectLongjevity };

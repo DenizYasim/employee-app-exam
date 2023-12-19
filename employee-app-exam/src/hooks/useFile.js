@@ -7,48 +7,45 @@ import {
 import { individualTimerArr } from "../utils/individualTimeArr";
 import { projectLongjevity } from "../utils/projectLongevity";
 import workingTimeCalculations from "../utils/workingTimeCalculations";
+import {
+	filterEmptyStringInArr,
+	incompleteFieldsArr,
+	sanitizeMatrixFromIncompleteFields,
+} from "../utils/validations";
 
 function useFile() {
 	const [projectTime, setProjcetTime] = useState([]);
 	const [arrPairs, setArrPairs] = useState([]);
 	const [individual, setIndividual] = useState([]);
+	const [errors, setErrors] = useState([]);
+	// const [temp, setTemo] = useState({});
 
 	function handleFileUpload(e) {
 		e.preventDefault();
 		const file = e.target.files[0];
 		const reader = new FileReader();
 
-		const errors = [];
-
 		if (file) {
 			reader.readAsText(file);
 
 			reader.onload = function () {
 				const dataArray = splitIntoArray(reader.result);
-				const emptyDataFilter = dataArray.filter((row) => {
-					return row.length > 1;
-				});
+				const emptyDataFilter = filterEmptyStringInArr(dataArray);
 				const dataMatrix = formatArrIntoMatrix(emptyDataFilter);
 
-				//Catches if a row doesn't have all fields
-				dataMatrix.forEach((row, index) => {
-					if (row.length !== 4) {
-						errors.push(index + 1);
-					}
-				});
+				const errors = incompleteFieldsArr(dataMatrix);
 
-				if (errors.length) {
-					errors.forEach((error) => {
-						console.log(`data on row ${error} is missing a value`);
-						dataMatrix.splice(error - 1, 1);
-					});
-				}
-				const grouped = groupArraysByProject(dataMatrix);
+				const sanitizedMatrix = sanitizeMatrixFromIncompleteFields(dataMatrix);
+
+				const grouped = groupArraysByProject(sanitizedMatrix);
 
 				const arrayOfPairs = workingTimeCalculations(grouped);
 				const arrayOfProjectTime = projectLongjevity(grouped);
 				const individual = individualTimerArr(grouped);
 
+				// setTemo(sanitizedMatrix);
+
+				setErrors(errors);
 				setProjcetTime(arrayOfProjectTime);
 				setArrPairs(arrayOfPairs);
 				setIndividual(individual);
@@ -56,7 +53,14 @@ function useFile() {
 		}
 	}
 
-	return { projectTime, arrPairs, individual, handleFileUpload };
+	return {
+		projectTime,
+		arrPairs,
+		individual,
+		errors,
+
+		handleFileUpload,
+	};
 }
 
 export default useFile;

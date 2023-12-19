@@ -1,3 +1,5 @@
+import { convertDateIntoUtc } from "./dateCalculations";
+
 function splitIntoArray(string) {
 	return string.split("\r\n");
 }
@@ -12,35 +14,20 @@ function formatArrIntoMatrix(array) {
 	);
 }
 
-function convertDateIntoUtc(date) {
-	if (date === "NULL") {
-		const date1 = new Date();
-		const utc = Date.UTC(
-			date1.getFullYear(),
-			date1.getMonth(),
-			date1.getDate()
-		);
-		return utc;
-	} else {
-		const dat = new Date(date);
-		const utc = Date.UTC(dat.getFullYear(), dat.getMonth(), dat.getDate());
-		return utc;
-	}
-}
-
 function groupArraysByProject(data) {
 	let groupedArrays = {};
 
 	for (let array of data) {
 		let id = array[1];
+		if (!!array[3] && !!array[2]) {
+			array[2] = convertDateIntoUtc(array[2]);
+			array[3] = convertDateIntoUtc(array[3]);
 
-		array[2] = convertDateIntoUtc(array[2]);
-		array[3] = convertDateIntoUtc(array[3]);
-
-		if (groupedArrays[id]) {
-			groupedArrays[id].push(array);
-		} else {
-			groupedArrays[id] = [array];
+			if (groupedArrays[id]) {
+				groupedArrays[id].push(array);
+			} else {
+				groupedArrays[id] = [array];
+			}
 		}
 	}
 

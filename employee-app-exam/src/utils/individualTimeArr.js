@@ -1,4 +1,4 @@
-import { dateDifferenceInDays } from "./dateDifferenceInDays";
+import { dateDifferenceInDays } from "./dateCalculations";
 
 function individualTimerArr(obj) {
 	const arrayOfFinal = [];

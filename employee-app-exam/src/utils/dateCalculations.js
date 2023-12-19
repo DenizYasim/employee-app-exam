@@ -15,4 +15,20 @@ function calculateDaysTogether(date1a, date1b, date2a, date2b) {
 	);
 }
 
-export { dateDifferenceInDays, calculateDaysTogether };
+function convertDateIntoUtc(date) {
+	if (date === "NULL") {
+		const date1 = new Date();
+		const utc = Date.UTC(
+			date1.getFullYear(),
+			date1.getMonth(),
+			date1.getDate()
+		);
+		return utc;
+	} else {
+		const dat = new Date(date);
+		const utc = Date.UTC(dat.getFullYear(), dat.getMonth(), dat.getDate());
+		return utc;
+	}
+}
+
+export { dateDifferenceInDays, calculateDaysTogether, convertDateIntoUtc };

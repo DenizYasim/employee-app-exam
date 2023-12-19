@@ -1,0 +1,32 @@
+.container {
+	position: absolute;
+	margin: 20px auto;
+	left: 0;
+	right: 0;
+
+	flex-direction: column;
+	background-color: #ef4444;
+	max-width: 60%;
+	border-radius: 30px;
+	padding: 15px 10px;
+}
+p {
+	letter-spacing: 1px;
+	border-bottom: 2px solid #dc2626;
+}
+.button {
+	background-color: #ef4444;
+	border: none;
+	border-radius: 20px;
+	cursor: pointer;
+	color: black;
+	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+
+	font-weight: 700;
+	font-size: 15px;
+	padding: 7px 35px;
+	transition: 0.5s;
+}
+.button:hover {
+	background-color: #f87171;
+}
