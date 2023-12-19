@@ -13,12 +13,12 @@ function DataVisualisePage() {
 	return (
 		<div className={styles.container}>
 			<FileUploadInput changeHandler={handleFileUpload} />
-			<ErrorsButton errors={errors} />
+			{!!errors.length && <ErrorsButton errors={errors} />}
 			<Searchbar />
 			<DataTableForSlice
 				arangedArr={projectTime}
 				firstTh={"Project ID"}
-				secondTh={"Participating Employees"}
+				secondTh={"Participating Employee IDs"}
 				thirdTh={"Project Longevity(days)"}
 			/>
 			<DataTableTemplate

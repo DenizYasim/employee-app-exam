@@ -3,7 +3,7 @@ import { calculateDaysTogether } from "./dateCalculations";
 function workingTimeCalculations(obj) {
 	const employeesWorkingTogether = [];
 	for (let key in obj) {
-		if (obj[key].lenght < 1) {
+		if (obj[key].length < 1) {
 			return;
 		}
 		for (let i = 0; i < obj[key].length; i++) {

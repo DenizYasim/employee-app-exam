@@ -8,7 +8,7 @@ function formatArrIntoMatrix(array) {
 	return (
 		array
 			//filters out empty rows or ones with just a space
-			.filter((row) => row.trim().lenght !== 1)
+			.filter((row) => row.trim().length !== 0)
 
 			.map((row) => row.split(",").map((cell) => cell.trim()))
 	);

@@ -7,8 +7,8 @@ function ErrorsButton({ errors }) {
 		setVisibility(!visibility);
 	};
 
-	return errors.length ? (
-		<>
+	return (
+		<div className={styles.error_container}>
 			<button className={styles.button} onClick={toggleVisibility}>
 				Errors
 			</button>
@@ -19,8 +19,8 @@ function ErrorsButton({ errors }) {
 					})}
 				</div>
 			) : null}
-		</>
-	) : null;
+		</div>
+	);
 }
 
 export default ErrorsButton;
