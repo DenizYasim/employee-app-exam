@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./PairsDataTable.module.css";
+import styles from "./DataTable.module.css";
 
 function PairsDataTable({ employeePairs }) {
 	return (

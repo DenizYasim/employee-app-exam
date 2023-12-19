@@ -5,16 +5,18 @@ import {
 	splitIntoArray,
 } from "../../utils/dataUtils";
 import FileUploadInput from "../FileUpload/FileUploadInput";
-import DataTable from "../DataTable/DataTable";
+import DataTable from "../DataTables/DataTable";
 import workingTimeCalculations from "../../utils/workingTimeCalculations";
 import { projectLongjevity } from "../../utils/projectLongevity";
-import PairsDataTable from "../PairsDataTable/PairsDataTable";
+import PairsDataTable from "../DataTables/PairsDataTable";
 import styles from "./DataVisualise.module.css";
+import { individualTimerArr } from "../../utils/individualTimeArr";
+import ProjectIndividualsTable from "../DataTables/ProjectIndividualsTable";
 
 function DataVisualise() {
-	// const [data, setData] = useState({});
 	const [projectTime, setProjcetTime] = useState([]);
 	const [arrPairs, setArrPairs] = useState([]);
+	const [individual, setIndividual] = useState([]);
 
 	function handleFileUpload(e) {
 		e.preventDefault();
@@ -46,15 +48,15 @@ function DataVisualise() {
 						dataMatrix.splice(error - 1, 1);
 					});
 				}
-
 				const grouped = groupArraysByProject(dataMatrix);
 
 				const arrayOfPairs = workingTimeCalculations(grouped);
 				const arrayOfProjectTime = projectLongjevity(grouped);
+				const individual = individualTimerArr(grouped);
 
-				// setData(grouped);
 				setProjcetTime(arrayOfProjectTime);
 				setArrPairs(arrayOfPairs);
+				setIndividual(individual);
 			};
 		}
 	}
@@ -63,6 +65,7 @@ function DataVisualise() {
 		<div className={styles.container}>
 			<FileUploadInput changeHandler={handleFileUpload} />
 			<DataTable projectTime={projectTime} />
+			<ProjectIndividualsTable individualTime={individual} />
 			<PairsDataTable employeePairs={arrPairs} />
 		</div>
 	);
