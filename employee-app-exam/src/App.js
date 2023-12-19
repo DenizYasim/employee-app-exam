@@ -1,10 +1,10 @@
 import "./App.css";
-import DataVisualise from "./components/DataVisualise/DataVisualise";
+import DataVisualisePage from "./components/DataVisualisePage/DataVisualisePage";
 
 function App() {
 	return (
 		<div className="App">
-			<DataVisualise />
+			<DataVisualisePage />
 		</div>
 	);
 }

@@ -1,25 +1,25 @@
 import React from "react";
 import styles from "./DataTable.module.css";
 
-function PairsDataTable({ employeePairs }) {
+function DataTableTemplate({ arrOfInfo, firstTh, secondTh, thirdTh }) {
 	return (
 		<>
-			{employeePairs.length ? (
+			{arrOfInfo.length ? (
 				<table className={styles.container}>
 					<thead>
 						<tr className={styles.tableTr}>
-							<th>Employee ID</th>
-							<th>Employee ID</th>
-							<th>Overlaping Work Days</th>
+							<th>{firstTh}</th>
+							<th>{secondTh}</th>
+							<th>{thirdTh}</th>
 						</tr>
 					</thead>
 					<tbody className={styles.tbody}>
-						{employeePairs.map((pair, i) => {
+						{arrOfInfo.map((subArr, i) => {
 							return (
 								<tr key={i}>
-									<td>{pair[1]}</td>
-									<td>{pair[2]}</td>
-									<td>{pair[3]}</td>
+									<td>{subArr[0]}</td>
+									<td>{subArr[1]}</td>
+									<td>{subArr[2]}</td>
 								</tr>
 							);
 						})}
@@ -30,4 +30,4 @@ function PairsDataTable({ employeePairs }) {
 	);
 }
 
-export default PairsDataTable;
+export default DataTableTemplate;

@@ -13,8 +13,6 @@ function workingTimeCalculations(obj) {
 					obj[key][i][2] < obj[key][j][3] &&
 					obj[key][j][2] < obj[key][i][3]
 				) {
-					pairsAndTime.push(obj[key][i][1]);
-
 					pairsAndTime.push(obj[key][i][0]);
 					pairsAndTime.push(obj[key][j][0]);
 					pairsAndTime.push(
@@ -31,9 +29,7 @@ function workingTimeCalculations(obj) {
 		}
 	}
 	return employeesWorkingTogether.sort((a, b) => {
-		if (a[3] > b[3]) {
-			return -1;
-		}
+		return b[2] - a[2];
 	});
 }
 

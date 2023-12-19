@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
 	formatArrIntoMatrix,
 	groupArraysByProject,
 	splitIntoArray,
-} from "../../utils/dataUtils";
-import FileUploadInput from "../FileUpload/FileUploadInput";
-import DataTable from "../DataTables/DataTable";
-import workingTimeCalculations from "../../utils/workingTimeCalculations";
-import { projectLongjevity } from "../../utils/projectLongevity";
-import PairsDataTable from "../DataTables/PairsDataTable";
-import styles from "./DataVisualise.module.css";
-import { individualTimerArr } from "../../utils/individualTimeArr";
-import ProjectIndividualsTable from "../DataTables/ProjectIndividualsTable";
+} from "../utils/dataUtils";
+import { individualTimerArr } from "../utils/individualTimeArr";
+import { projectLongjevity } from "../utils/projectLongevity";
+import workingTimeCalculations from "../utils/workingTimeCalculations";
 
-function DataVisualise() {
+function useFile() {
 	const [projectTime, setProjcetTime] = useState([]);
 	const [arrPairs, setArrPairs] = useState([]);
 	const [individual, setIndividual] = useState([]);
@@ -61,14 +56,7 @@ function DataVisualise() {
 		}
 	}
 
-	return (
-		<div className={styles.container}>
-			<FileUploadInput changeHandler={handleFileUpload} />
-			<DataTable projectTime={projectTime} />
-			<ProjectIndividualsTable individualTime={individual} />
-			<PairsDataTable employeePairs={arrPairs} />
-		</div>
-	);
+	return { projectTime, arrPairs, individual, handleFileUpload };
 }
 
-export default DataVisualise;
+export default useFile;
