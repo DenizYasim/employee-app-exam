@@ -2,8 +2,8 @@ import styles from "./DataTable.module.css";
 
 import useSearch from "../../hooks/useSearch";
 
-function DataTableTemplate({ arrOfInfo, firstTh, secondTh, thirdTh }) {
-	const { filteredData } = useSearch(arrOfInfo);
+function DataTableTemplate({ data, firstTh, secondTh, thirdTh }) {
+	const { filteredData } = useSearch(data);
 
 	return (
 		<>
@@ -18,11 +18,12 @@ function DataTableTemplate({ arrOfInfo, firstTh, secondTh, thirdTh }) {
 					</thead>
 					<tbody className={styles.tbody}>
 						{filteredData.map((subArr, i) => {
+							const midArr = subArr.slice(1, subArr.length - 1);
 							return (
 								<tr key={i}>
 									<td>{subArr[0]}</td>
-									<td>{subArr[1]}</td>
-									<td>{subArr[2]}</td>
+									<td>{midArr.join(", ")}</td>
+									<td>{subArr[subArr.length - 1]}</td>
 								</tr>
 							);
 						})}

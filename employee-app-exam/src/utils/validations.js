@@ -1,9 +1,3 @@
-function filterEmptyStringInArr(arr) {
-	return arr.filter((row) => {
-		return row.length > 1;
-	});
-}
-
 function sanitizeMatrixFromIncompleteFields(matrix) {
 	//Catches if a row doesn't have all fields
 	matrix.forEach((row, index) => {
@@ -30,8 +24,4 @@ function incompleteFieldsArr(matrix) {
 	return errors;
 }
 
-export {
-	filterEmptyStringInArr,
-	sanitizeMatrixFromIncompleteFields,
-	incompleteFieldsArr,
-};
+export { sanitizeMatrixFromIncompleteFields, incompleteFieldsArr };

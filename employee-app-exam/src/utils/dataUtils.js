@@ -1,17 +1,14 @@
 import { convertDateIntoUtc } from "./dateCalculations";
 
-function splitIntoArray(string) {
-	return string.split("\r\n");
-}
+function splitIntoMatrix(string) {
+	const matrix = string
+		.split("\r\n")
+		//filters out empty rows or ones with just a space
+		.filter((row) => row.trim().length !== 0)
+		//maps into matrix by splitting by commas
+		.map((row) => row.split(",").map((cell) => cell.trim()));
 
-function formatArrIntoMatrix(array) {
-	return (
-		array
-			//filters out empty rows or ones with just a space
-			.filter((row) => row.trim().length !== 0)
-
-			.map((row) => row.split(",").map((cell) => cell.trim()))
-	);
+	return matrix;
 }
 
 function groupArraysByProject(data) {
@@ -19,7 +16,7 @@ function groupArraysByProject(data) {
 
 	for (let array of data) {
 		let id = array[1];
-		//I dont know where else to put this validation
+		//I dont know where else to put this validation for NaN
 		if (!!array[3] && !!array[2]) {
 			array[2] = convertDateIntoUtc(array[2]);
 			array[3] = convertDateIntoUtc(array[3]);
@@ -35,4 +32,4 @@ function groupArraysByProject(data) {
 	return groupedArrays;
 }
 
-export { splitIntoArray, formatArrIntoMatrix, groupArraysByProject };
+export { splitIntoMatrix, groupArraysByProject };

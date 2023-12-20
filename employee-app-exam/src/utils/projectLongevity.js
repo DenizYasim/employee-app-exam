@@ -31,7 +31,12 @@ function projectLongjevity(obj) {
 		arrayOfProject.push(longevity);
 		arrayOfFinal.push(arrayOfProject);
 	}
-	return arrayOfFinal.sort((a, b) => {
+	//Filters out rows that dont have more than one employee working
+	const sendArr = arrayOfFinal.filter((row) => {
+		return row.length > 3;
+	});
+
+	return sendArr.sort((a, b) => {
 		return b[b.length - 1] - a[a.length - 1];
 	});
 }

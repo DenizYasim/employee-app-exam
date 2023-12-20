@@ -1,14 +1,9 @@
 import { useState } from "react";
-import {
-	formatArrIntoMatrix,
-	groupArraysByProject,
-	splitIntoArray,
-} from "../utils/dataUtils";
+import { groupArraysByProject, splitIntoMatrix } from "../utils/dataUtils";
 import { individualTimerArr } from "../utils/individualTimeArr";
 import { projectLongjevity } from "../utils/projectLongevity";
 import workingTimeCalculations from "../utils/workingTimeCalculations";
 import {
-	filterEmptyStringInArr,
 	incompleteFieldsArr,
 	sanitizeMatrixFromIncompleteFields,
 } from "../utils/validations";
@@ -29,9 +24,7 @@ function useFile() {
 			reader.readAsText(file);
 
 			reader.onload = function () {
-				const dataArray = splitIntoArray(reader.result);
-				const emptyDataFilter = filterEmptyStringInArr(dataArray);
-				const dataMatrix = formatArrIntoMatrix(emptyDataFilter);
+				const dataMatrix = splitIntoMatrix(reader.result);
 
 				const errors = incompleteFieldsArr(dataMatrix);
 

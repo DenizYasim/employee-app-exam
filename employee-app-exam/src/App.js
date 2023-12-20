@@ -1,5 +1,5 @@
 import "./App.css";
-import DataVisualisePage from "./components/DataVisualisePage/DataVisualisePage";
+import DataVisualisePage from "./Page/DataVisualisePage";
 import { SearchProvider } from "./context/SearchContext";
 
 function App() {

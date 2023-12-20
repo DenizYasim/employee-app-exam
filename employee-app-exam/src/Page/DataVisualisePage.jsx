@@ -1,10 +1,9 @@
-import FileUploadInput from "../FileUpload/FileUploadInput";
-import DataTableForSlice from "../DataTables/DataTableForSlice";
+import FileUploadInput from "../components/FileUpload/FileUploadInput";
 import styles from "./DataVisualise.module.css";
-import DataTableTemplate from "../DataTables/DataTableTemplate";
-import useFile from "../../hooks/useFile";
-import ErrorsButton from "../ErrorsButton/ErrorsButton";
-import Searchbar from "../SearchBar/Searchbar";
+import DataTableTemplate from "../components/DataTables/DataTableTemplate";
+import useFile from "../hooks/useFile";
+import ErrorsButton from "../components/ErrorsButton/ErrorsButton";
+import Searchbar from "../components/SearchBar/Searchbar";
 
 function DataVisualisePage() {
 	const { projectTime, arrPairs, individual, errors, handleFileUpload } =
@@ -15,20 +14,20 @@ function DataVisualisePage() {
 			<FileUploadInput changeHandler={handleFileUpload} />
 			{!!errors.length && <ErrorsButton errors={errors} />}
 			<Searchbar />
-			<DataTableForSlice
-				arangedArr={projectTime}
+			<DataTableTemplate
+				data={projectTime}
 				firstTh={"Project ID"}
 				secondTh={"Participating Employee IDs"}
 				thirdTh={"Project Longevity(days)"}
 			/>
 			<DataTableTemplate
-				arrOfInfo={individual}
+				data={individual}
 				firstTh={"Project ID"}
 				secondTh={"Employee IDs"}
 				thirdTh={"Days Worked on Project"}
 			/>
 			<DataTableTemplate
-				arrOfInfo={arrPairs}
+				data={arrPairs}
 				firstTh={"Employee ID"}
 				secondTh={"Employee ID"}
 				thirdTh={"Overlaping Work Days"}
