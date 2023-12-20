@@ -6,23 +6,23 @@ import ErrorsButton from "../components/ErrorsButton/ErrorsButton";
 import SearchBar from "../components/SearchBar/Searchbar";
 
 function DataVisualisePage() {
-	const { projectTime, arrPairs, individual, errors, handleFileUpload } =
+	const { projectsArr, arrPairs, individualsArr, errors, handleFileUpload } =
 		useFile();
 
 	return (
 		<div className={styles.container}>
 			<FileUploadInput changeHandler={handleFileUpload} />
 			{!!errors.length && <ErrorsButton errors={errors} />}
-			{!!projectTime.length && <SearchBar />}
+			{!!projectsArr.length && <SearchBar />}
 			<DataTableTemplate
-				data={projectTime}
+				data={projectsArr}
 				title={"Common Project Participants"}
 				firstTh={"Project ID"}
 				secondTh={"Participating Employee IDs"}
 				thirdTh={"Project Longevity(days)"}
 			/>
 			<DataTableTemplate
-				data={individual}
+				data={individualsArr}
 				title={"Individual Time Worked on Projects"}
 				firstTh={"Project ID"}
 				secondTh={"Employee IDs"}

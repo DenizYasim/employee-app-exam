@@ -1,6 +1,6 @@
 import { dateDifferenceInDays } from "./dateCalculations";
 
-function individualTimerArr(obj) {
+function formatToArrOfIndividuals(obj) {
 	const arrayOfFinal = [];
 	for (let key in obj) {
 		for (let i = 0; i < obj[key].length; i++) {
@@ -14,4 +14,4 @@ function individualTimerArr(obj) {
 	}
 	return arrayOfFinal;
 }
-export { individualTimerArr };
+export { formatToArrOfIndividuals };

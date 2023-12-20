@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { groupArraysByProject, splitIntoMatrix } from "../utils/dataUtils";
-import { individualTimerArr } from "../utils/individualTimeArr";
-import { projectLongjevity } from "../utils/projectLongevity";
-import workingTimeCalculations from "../utils/workingTimeCalculations";
+import { formatToArrOfIndividuals } from "../utils/formatToArrOfIndividuals";
+import { formatToArrOfProjects } from "../utils/formatToArrOfProjects";
+import formatToArrOfPairs from "../utils/formatToArrOfPairs";
 import {
 	incompleteFieldsArr,
 	sanitizeMatrixFromIncompleteFields,
 } from "../utils/validations";
 
 function useFile() {
-	const [projectTime, setProjcetTime] = useState([]);
+	const [projectsArr, setProjcetsArr] = useState([]);
 	const [arrPairs, setArrPairs] = useState([]);
-	const [individual, setIndividual] = useState([]);
+	const [individualsArr, setIndividualsArr] = useState([]);
 	const [errors, setErrors] = useState([]);
 	// const [temp, setTemo] = useState({});
 
@@ -32,24 +32,24 @@ function useFile() {
 
 				const grouped = groupArraysByProject(sanitizedMatrix);
 
-				const arrayOfPairs = workingTimeCalculations(grouped);
-				const arrayOfProjectTime = projectLongjevity(grouped);
-				const individual = individualTimerArr(grouped);
+				const arrayOfPairs = formatToArrOfPairs(grouped);
+				const arrayOfProjectTime = formatToArrOfProjects(grouped);
+				const individuals = formatToArrOfIndividuals(grouped);
 
 				// setTemo(sanitizedMatrix);
 
 				setErrors(errors);
-				setProjcetTime(arrayOfProjectTime);
+				setProjcetsArr(arrayOfProjectTime);
 				setArrPairs(arrayOfPairs);
-				setIndividual(individual);
+				setIndividualsArr(individuals);
 			};
 		}
 	}
 
 	return {
-		projectTime,
+		projectsArr,
 		arrPairs,
-		individual,
+		individualsArr,
 		errors,
 		handleFileUpload,
 	};

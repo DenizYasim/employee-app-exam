@@ -1,6 +1,6 @@
 import { calculateDaysTogether } from "./dateCalculations";
 
-function workingTimeCalculations(obj) {
+function formatToArrOfPairs(obj) {
 	const employeesWorkingTogether = [];
 	for (let key in obj) {
 		if (obj[key].length < 1) {
@@ -47,4 +47,4 @@ function workingTimeCalculations(obj) {
 	});
 }
 
-export default workingTimeCalculations;
+export default formatToArrOfPairs;

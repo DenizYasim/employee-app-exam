@@ -1,6 +1,6 @@
 import { dateDifferenceInDays } from "./dateCalculations";
 
-function projectLongjevity(obj) {
+function formatToArrOfProjects(obj) {
 	const arrayOfFinal = [];
 	for (let key in obj) {
 		const dateWorkedTogether = [];
@@ -58,4 +58,4 @@ function projectLongjevity(obj) {
 		return b[b.length - 1] - a[a.length - 1];
 	});
 }
-export { projectLongjevity };
+export { formatToArrOfProjects };
