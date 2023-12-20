@@ -7,11 +7,13 @@ import {
 	incompleteFieldsArr,
 	sanitizeMatrixFromIncompleteFields,
 } from "../utils/validations";
+import formatToArrOfCommon from "../utils/formatToArrOfCommon";
 
 function useFile() {
 	const [projectsArr, setProjcetsArr] = useState([]);
 	const [arrPairs, setArrPairs] = useState([]);
 	const [individualsArr, setIndividualsArr] = useState([]);
+	const [commonArr, setCommonsArr] = useState([]);
 	const [errors, setErrors] = useState([]);
 	// const [temp, setTemo] = useState({});
 
@@ -35,8 +37,11 @@ function useFile() {
 				const arrayOfPairs = formatToArrOfPairs(grouped);
 				const arrayOfProjectTime = formatToArrOfProjects(grouped);
 				const individuals = formatToArrOfIndividuals(grouped);
+				const arrayOfCommon = formatToArrOfCommon(grouped);
 
 				// setTemo(sanitizedMatrix);
+
+				setCommonsArr(arrayOfCommon);
 
 				setErrors(errors);
 				setProjcetsArr(arrayOfProjectTime);
@@ -52,6 +57,7 @@ function useFile() {
 		individualsArr,
 		errors,
 		handleFileUpload,
+		commonArr,
 	};
 }
 

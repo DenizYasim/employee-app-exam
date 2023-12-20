@@ -6,20 +6,26 @@ import ErrorsButton from "../components/ErrorsButton/ErrorsButton";
 import SearchBar from "../components/SearchBar/Searchbar";
 
 function DataVisualisePage() {
-	const { projectsArr, arrPairs, individualsArr, errors, handleFileUpload } =
-		useFile();
+	const {
+		projectsArr,
+		arrPairs,
+		individualsArr,
+		errors,
+		commonArr,
+		handleFileUpload,
+	} = useFile();
 
 	return (
 		<div className={styles.container}>
 			<FileUploadInput changeHandler={handleFileUpload} />
 			{!!errors.length && <ErrorsButton errors={errors} />}
-			{!!projectsArr.length && <SearchBar />}
+			{!!individualsArr.length && <SearchBar />}
 			<DataTableTemplate
-				data={projectsArr}
-				title={"Common Project Participants"}
-				firstTh={"Project ID"}
-				secondTh={"Participating Employee IDs"}
-				thirdTh={"Project Longevity(days)"}
+				data={commonArr}
+				title={"Pairs With Most Cumualative Days in Common Projects"}
+				firstTh={"Employee IDs"}
+				secondTh={"Employee IDs"}
+				thirdTh={"Cumulative Days Worked"}
 			/>
 			<DataTableTemplate
 				data={individualsArr}
@@ -34,6 +40,13 @@ function DataVisualisePage() {
 				firstTh={"Employee ID"}
 				secondTh={"Employee ID"}
 				thirdTh={"Overlaping Work Days"}
+			/>
+			<DataTableTemplate
+				data={projectsArr}
+				title={"Projects Participants"}
+				firstTh={"Project ID"}
+				secondTh={"Employee IDs"}
+				thirdTh={"Project Longevity(days)"}
 			/>
 		</div>
 	);
