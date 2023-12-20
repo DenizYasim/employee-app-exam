@@ -8,6 +8,7 @@ function workingTimeCalculations(obj) {
 		}
 		for (let i = 0; i < obj[key].length; i++) {
 			for (let j = i + 1; j < obj[key].length; j++) {
+				let flag = true;
 				const pairsAndTime = [];
 				if (
 					obj[key][i][2] < obj[key][j][3] &&
@@ -23,7 +24,20 @@ function workingTimeCalculations(obj) {
 							obj[key][j][3]
 						)
 					);
-					employeesWorkingTogether.push(pairsAndTime);
+					for (let k = 0; k < employeesWorkingTogether.length; k++) {
+						if (
+							(employeesWorkingTogether[k][0] === pairsAndTime[0] &&
+								employeesWorkingTogether[k][1] === pairsAndTime[1]) ||
+							(employeesWorkingTogether[k][1] === pairsAndTime[0] &&
+								employeesWorkingTogether[k][0] === pairsAndTime[1])
+						) {
+							flag = false;
+							employeesWorkingTogether[k][2] += pairsAndTime[2];
+						}
+					}
+					if (flag) {
+						employeesWorkingTogether.push(pairsAndTime);
+					}
 				}
 			}
 		}
