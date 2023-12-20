@@ -6,6 +6,8 @@ However from what I interpreted from the examples is that there should be an out
 
 The first table shows which employees have worked on COMMON projects with the cumulative days worked on the project, I did this beacause I was not sure if I have to show OVERLAPPING days worked or CUMULATIVE days worked on COMMON projects. For that reason there are three ways I group the data before visualising.
 
+Sorry that there are so many tables I just couldnt tell which is the main ask, either common projects without overlap(1),individual time(2), overlap days(3) or just project time(4)
+
 ## The Algorithms
 
 ### CSV Formatting
@@ -18,11 +20,13 @@ Then I format the object into matrixes for using the dataTableTemplate component
 
 ### Formating For Tables
 
-1. For pairs with overlaping work days. Check if any of the NEXT people in the array have overlaping days, which are calulated by checking start and end dates(MS_PER_DAY represents 1 day in utc) and add into an array if the pair doesnt already exist. Sorted in return because no interactive sort functionality.
+1. Cumulative days in common Projects table. This matrix is made with the pairs from COMMON projects(even with 3 participants) and with the cumulative time they have worked on said project (The time each person has spent ot the project Added together minus overlapping days)
 
-2. formatToArrOfIndividuals. Just the initial matrix which was before the grouped object with calculated day differance for start and end date of individual(this function would be unneeded if I didn't use object).
+2. IndividualTimeArr. Just the initial matrix which was before the grouped object with calculated day differance for start and end date of individual(this function would be unneeded if I didn't use object).
 
-3. formatToArrOfProjects. Finds start and end date of project and adds into array with its participants and projectId. Sorted in return.
+3. For pairs with overlaping work days. Check if any of the NEXT people in the array have overlaping days, which are calulated by checking start and end dates(MS_PER_DAY represents 1 day in utc). Sorted in return because no interactive sort functionality.
+
+4. Longevidy. Finds start and end date of project and adds into array with its participants and projectId. Sorted in return.
 
 ### Search Functionality
 
