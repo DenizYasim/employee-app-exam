@@ -1,7 +1,7 @@
 function dateDifferenceInDays(date1, date2) {
 	const _MS_PER_DAY = 1000 * 60 * 60 * 24;
 
-	return Math.floor((date2 - date1) / _MS_PER_DAY);
+	return Math.abs(Math.floor((date2 - date1) / _MS_PER_DAY));
 }
 
 function calculateDaysTogether(date1a, date1b, date2a, date2b) {
