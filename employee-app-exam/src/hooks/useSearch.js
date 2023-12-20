@@ -4,13 +4,13 @@ import { SearchContext } from "../context/SearchContext";
 function useSearch(TableArr) {
 	const { searchInput } = useContext(SearchContext);
 	const [filteredData, setFilteredData] = useState(TableArr);
-	const noResults = [["No Results", "No Results", "-"]];
 
 	useEffect(() => {
 		setFilteredData(TableArr);
 	}, [TableArr]);
 
 	useEffect(() => {
+		const noResults = [["No Results", "No Results", "-"]];
 		if (!searchInput) {
 			setFilteredData(TableArr);
 		} else {
@@ -25,7 +25,7 @@ function useSearch(TableArr) {
 			}
 			filtered.length ? setFilteredData(filtered) : setFilteredData(noResults);
 		}
-	}, [searchInput]);
+	}, [searchInput, TableArr]);
 	return {
 		filteredData,
 	};
