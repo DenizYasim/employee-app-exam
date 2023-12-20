@@ -1,0 +1,16 @@
+.Input {
+	margin-top: 20px;
+	width: 60%;
+	border-radius: 3px;
+	border: 2px solid #06b6d4;
+	padding: 10px 10px;
+	outline: none;
+	transition: 0.5s;
+	font-weight: 700;
+	color: #020617;
+	box-shadow: 0 6px 10px rgba(0, 0, 0, 0.12);
+}
+.Input:active,
+.Input:focus {
+	background-color: #06b6d4;
+}

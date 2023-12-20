@@ -1,9 +1,17 @@
 .container {
-	margin: 20px auto;
+	margin: 25px auto;
 	background-color: #7dd3fc;
 	width: 60%;
 	border-collapse: collapse;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.FullContainer h2 {
+	padding-bottom: 5px;
+	width: 70%;
+	margin: 25px auto;
+	border-bottom: 1px solid #0284c7;
+	color: #27272a;
 }
 
 .container thead tr {
